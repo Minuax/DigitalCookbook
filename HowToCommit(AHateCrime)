@@ -1,0 +1,14 @@
+How to commit:
+Version x.x.x
++ = Added
+- = Removed
+> = Fixed
+
+Dependencies:
+~ = Bereits vorhanden (beibehalten)
++ = Added
+- = Removed
+> = Changed (neue Dependency) 
+
+TODO:
+~ = TODO
