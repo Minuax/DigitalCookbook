@@ -1,0 +1,6 @@
+Digital Cookbook - Kochbuch mit integrieter Einkaufsliste
+
+Das Projekt besteht aus einem digitalen Kochbuch, aus dem 
+sich der Nutzer Rezepte heraussuchen kann. Beim Auswählen 
+eines Rezeptes können dessen Zutaten auf eine Einkaufsliste
+übertragen werden. 
