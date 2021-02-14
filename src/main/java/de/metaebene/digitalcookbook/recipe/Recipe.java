@@ -58,7 +58,15 @@ public class Recipe {
         return recipeIngredientArrayList;
     }
 
-    public ArrayList<Image> getImageArrayList() { return imageArrayList; }
+    public ArrayList<Image> getImageArrayList() {
+        return imageArrayList;
+    }
 
-    public RecipeType getRecipeType() { return recipeType; }
+    public RecipeType getRecipeType() {
+        return recipeType;
+    }
+
+    public void addImage(Image image) {
+        this.imageArrayList.add(image);
+    }
 }

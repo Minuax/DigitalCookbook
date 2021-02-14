@@ -20,6 +20,8 @@ public class DigitalCookbook extends Application {
     private FrameHandler frameHandler;
     private RecipeHandler recipeHandler;
 
+    private Stage stage;
+
     public static void main(String[] args) {
         launch(args);
     }
@@ -27,6 +29,7 @@ public class DigitalCookbook extends Application {
     @Override
     public void start(Stage primaryStage) {
         instance = this;
+        this.stage = primaryStage;
 
         this.frameHandler = new FrameHandler();
         this.recipeHandler = new RecipeHandler();
@@ -50,6 +53,8 @@ public class DigitalCookbook extends Application {
             e.printStackTrace();
         }
     }
+
+    public Stage getStage() { return stage; }
 
     public FrameHandler getFrameHandler() {
         return frameHandler;

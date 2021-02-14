@@ -12,4 +12,15 @@ public class Ingredient {
         this.ingredientType = ingredientType;
     }
 
+    public int getIngredientID() {
+        return ingredientID;
+    }
+
+    public String getIngredientName() {
+        return ingredientName;
+    }
+
+    public IngredientType getIngredientType() {
+        return ingredientType;
+    }
 }

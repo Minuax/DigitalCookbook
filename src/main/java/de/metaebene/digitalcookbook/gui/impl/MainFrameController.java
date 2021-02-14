@@ -1,10 +1,11 @@
-package de.metaebene.digitalcookbook.gui;
+package de.metaebene.digitalcookbook.gui.impl;
 
 import de.metaebene.digitalcookbook.DigitalCookbook;
 import de.metaebene.digitalcookbook.recipe.Recipe;
 import de.metaebene.digitalcookbook.recipe.RecipeType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -13,6 +14,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -70,6 +72,8 @@ public class MainFrameController implements Initializable {
                         setPrefWidth(param.getWidth() - 20);
 
                         setGraphic(imageView);
+
+
                     }
                 } else {
                     setText(null);
@@ -78,13 +82,18 @@ public class MainFrameController implements Initializable {
             }
         });
 
+        recipes.setOnMouseClicked(event -> {
+            if (recipes.getSelectionModel().getSelectedItem() != null)
+                DigitalCookbook.instance.getFrameHandler().openRecipeFrame(recipes.getSelectionModel().getSelectedItem());
+        });
+
 
         //Set the filter Predicate whenever the filter changes.
         searchField.setPromptText("Suchbegriff eingeben..");
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             ArrayList<Recipe> recipeArrayList = DigitalCookbook.instance.getRecipeHandler().getRecipesByType(mealSelection.getValue());
 
-            recipeArrayList.removeIf(recipe -> !recipe.getRecipeTitle().toLowerCase().contains(searchField.getText()));
+            recipeArrayList.removeIf(recipe -> !recipe.getRecipeTitle().toLowerCase().contains(searchField.getText().toLowerCase()));
 
             observableList = FXCollections.observableArrayList(recipeArrayList);
 
