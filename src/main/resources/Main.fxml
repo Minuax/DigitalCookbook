@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox minWidth="640.0" minHeight="400.0" maxWidth="640" maxHeight="400.0" xmlns:fx="http://javafx.com/fxml/1"
+      xmlns="http://javafx.com/javafx/8.0.111"
+      fx:controller="de.metaebene.digitalcookbook.gui.MainFrameController">
+
+    <children>
+        <SplitPane dividerPositions="0.22413793103448276" minHeight="413.0" minWidth="640.0">
+            <items>
+                <AnchorPane minHeight="160" minWidth="140">
+                    <children>
+                        <Button fx:id="einkaufslisteButton" layoutX="14.0" layoutY="331.0" mnemonicParsing="false"
+                                minHeight="53.0" minWidth="114.0" text="Einkaufsliste"/>
+                        <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true"
+                                   preserveRatio="true">
+                            <image>
+                                <Image url="logo.png"/>
+                            </image>
+                        </ImageView>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="160" minWidth="492">
+                    <children>
+                        <Button fx:id="settingsButton" layoutX="391.0" layoutY="359.0" mnemonicParsing="false"
+                                text="Einstellungen"/>
+                        <ChoiceBox fx:id="mealSelection" layoutX="376.0" layoutY="14.0" prefHeight="25.0"
+                                   prefWidth="102.0"/>
+                        <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" minHeight="25.0" minWidth="350.0"/>
+                        <ListView fx:id="recipes" layoutX="14.0" layoutY="54.0" minHeight="100.0"
+                                  minWidth="463.0"/>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</VBox>

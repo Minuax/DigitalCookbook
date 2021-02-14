@@ -17,5 +17,4 @@ public enum IngredientType {
     TASSE,
     BUND
 
-
 }
