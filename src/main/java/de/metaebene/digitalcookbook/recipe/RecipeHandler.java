@@ -15,17 +15,7 @@ public class RecipeHandler {
     public RecipeHandler() {
         this.recipeArrayList = new ArrayList<>();
 
-        this.recipeArrayList.add(new Recipe(1, 4, "ChopSuey", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea", "8 Jahre", "5", RecipeType.VORSPEISE));
-        this.recipeArrayList.add(new Recipe(2, 4, "Huhn", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea", "8 Jahre", "5", RecipeType.HAUPTSPEISE));
-        this.recipeArrayList.add(new Recipe(3, 4, "Judendreck", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea", "8 Jahre", "5", RecipeType.HAUPTSPEISE));
-        this.recipeArrayList.add(new Recipe(4, 4, "Zyklon B", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea", "8 Jahre", "5", RecipeType.NACHSPEISE));
-        this.recipeArrayList.add(new Recipe(5, 4, "Deutschland", "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea", "8 Jahre", "5", RecipeType.NACHSPEISE));
 
-        for (Recipe recipe : this.recipeArrayList)
-            for (int i = 0; i < 10; i++) {
-                recipe.getRecipeInstructionArrayList().add(new Instruction(new Random().nextInt(888) + "asdasd"));
-                recipe.getRecipeIngredientArrayList().add(new Ingredient(00001, new Random().nextInt(888) + "asdasdasd", IngredientType.values()[new Random().nextInt(IngredientType.values().length)]));
-            }
     }
 
     public ArrayList<Recipe> getRecipesByType(RecipeType recipeType) {
@@ -36,6 +26,10 @@ public class RecipeHandler {
             }
         }
         return recipes;
+    }
+
+    public void addRecipe(Recipe recipe) {
+        this.recipeArrayList.add(recipe);
     }
 
     public ArrayList<Recipe> getRecipeArrayList() {

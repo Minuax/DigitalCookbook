@@ -5,6 +5,7 @@ import de.metaebene.digitalcookbook.recipe.instruction.Instruction;
 import javafx.scene.image.Image;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Recipe {
 
@@ -12,9 +13,10 @@ public class Recipe {
     private String recipeTitle, recipeDescription, recipeWorktime, recipeCooktime;
     private RecipeType recipeType;
 
+    private Image recipeImage;
+
     private ArrayList<Instruction> recipeInstructionArrayList;
-    private ArrayList<Ingredient> recipeIngredientArrayList;
-    private ArrayList<Image> imageArrayList;
+    private HashMap<Ingredient, Double> recipeIngredientHashmap;
 
     public Recipe(int recipeID, int recipePortions, String recipeTitle, String recipeDescription, String recipeWorktime, String recipeCooktime, RecipeType recipeType) {
         this.recipeID = recipeID;
@@ -25,13 +27,18 @@ public class Recipe {
         this.recipeCooktime = recipeCooktime;
         this.recipeType = recipeType;
 
+        this.recipeImage = new Image("placeholder.png");
+
         this.recipeInstructionArrayList = new ArrayList<>();
-        this.recipeIngredientArrayList = new ArrayList<>();
-        this.imageArrayList = new ArrayList<>();
+        this.recipeIngredientHashmap = new HashMap<>();
     }
 
     public int getRecipeID() {
         return recipeID;
+    }
+
+    public int getRecipePortions() {
+        return recipePortions;
     }
 
     public String getRecipeTitle() {
@@ -50,23 +57,17 @@ public class Recipe {
         return recipeCooktime;
     }
 
+    public Image getRecipeImage() {
+        return recipeImage;
+    }
+
     public ArrayList<Instruction> getRecipeInstructionArrayList() {
         return recipeInstructionArrayList;
     }
 
-    public ArrayList<Ingredient> getRecipeIngredientArrayList() {
-        return recipeIngredientArrayList;
-    }
-
-    public ArrayList<Image> getImageArrayList() {
-        return imageArrayList;
-    }
+    public HashMap<Ingredient, Double> getRecipeIngredientHashmap() { return recipeIngredientHashmap; }
 
     public RecipeType getRecipeType() {
         return recipeType;
-    }
-
-    public void addImage(Image image) {
-        this.imageArrayList.add(image);
     }
 }

@@ -5,7 +5,6 @@ import de.metaebene.digitalcookbook.recipe.Recipe;
 import de.metaebene.digitalcookbook.recipe.RecipeType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
@@ -14,7 +13,6 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -60,7 +58,7 @@ public class MainFrameController implements Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        imageView.setImage(recipe.getImageArrayList().isEmpty() ? new Image("placeholder.png") : recipe.getImageArrayList().get(0));
+                        //imageView.setImage(recipe.getRecipeImageArrayList().isEmpty() ? new Image("placeholder.png") : recipe.getRecipeImageArrayList().get(0));
                         imageView.setFitWidth(222);
                         imageView.setFitHeight(130);
 
@@ -86,7 +84,6 @@ public class MainFrameController implements Initializable {
             if (recipes.getSelectionModel().getSelectedItem() != null)
                 DigitalCookbook.instance.getFrameHandler().openRecipeFrame(recipes.getSelectionModel().getSelectedItem());
         });
-
 
         //Set the filter Predicate whenever the filter changes.
         searchField.setPromptText("Suchbegriff eingeben..");
