@@ -17,7 +17,7 @@
         <ImageView fx:id="imageView" fitHeight="130.0" fitWidth="222.0" layoutX="14.0" layoutY="14.0"
                    preserveRatio="true">
             <image>
-                <Image url="@placeholder.png"/>
+                <Image url="@icons/placeholder.png"/>
             </image>
         </ImageView>
 

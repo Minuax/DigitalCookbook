@@ -22,7 +22,7 @@
                         <Button fx:id="einkaufslisteButton" layoutX="14.0" layoutY="331.0" mnemonicParsing="false" minHeight="53.0" minWidth="114.0" text="Einkaufsliste"/>
                         <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="logo.png"/>
+                                <Image url="icons/logo.png"/>
                             </image>
                         </ImageView>
                     </children>

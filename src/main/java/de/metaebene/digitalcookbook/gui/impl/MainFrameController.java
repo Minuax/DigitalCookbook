@@ -20,13 +20,8 @@ import java.util.ResourceBundle;
 
 public class MainFrameController implements Initializable {
 
-    @FXML
     public ListView<Recipe> recipes;
-
-    @FXML
     public TextField searchField;
-
-    @FXML
     public ChoiceBox<RecipeType> mealSelection;
 
     private ObservableList observableList;
@@ -98,7 +93,6 @@ public class MainFrameController implements Initializable {
             recipes.setItems(observableList);
             recipes.refresh();
         });
-
     }
 
 }

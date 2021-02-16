@@ -1,12 +1,6 @@
 package de.metaebene.digitalcookbook.recipe;
 
-import de.metaebene.digitalcookbook.recipe.ingredient.impl.Ingredient;
-import de.metaebene.digitalcookbook.recipe.ingredient.impl.IngredientType;
-import de.metaebene.digitalcookbook.recipe.instruction.Instruction;
-import javafx.scene.image.Image;
-
 import java.util.ArrayList;
-import java.util.Random;
 
 public class RecipeHandler {
 

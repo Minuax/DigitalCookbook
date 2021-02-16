@@ -27,7 +27,7 @@ public class Recipe {
         this.recipeCooktime = recipeCooktime;
         this.recipeType = recipeType;
 
-        this.recipeImage = new Image("placeholder.png");
+        this.recipeImage = new Image("icons/placeholder.png");
 
         this.recipeInstructionArrayList = new ArrayList<>();
         this.recipeIngredientHashmap = new HashMap<>();

@@ -16,7 +16,6 @@ import java.util.ResourceBundle;
 
 public class RecipeFrameController implements Initializable {
 
-
     public ImageView imageView;
 
     public Label titleLabel;

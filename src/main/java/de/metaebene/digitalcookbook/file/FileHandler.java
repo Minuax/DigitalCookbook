@@ -62,7 +62,6 @@ public class FileHandler {
             try (FileWriter file = new FileWriter(new File(directory, recipe.getRecipeID() + ".json"))) {
                 file.write(jsonObject.toString());
                 file.flush();
-
             } catch (IOException e) {
                 e.printStackTrace();
             }
