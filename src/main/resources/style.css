@@ -18,10 +18,6 @@
     -fx-background-color: -fx-primary;
 }
 
-.glyph-icon {
-    -fx-fill: -fx-primarytext;
-}
-
 .button {
     -fx-text-fill: -fx-primarytext;
     -fx-background-color: -fx-primary;
@@ -56,30 +52,30 @@
     -fx-text-fill: derive(-fx-secondary, 20%);
 }
 
-.choice-box > * {
+.combo-box > * {
     -fx-background-color: -fx-secondarybackground;
 }
 
-.choice-box .context-menu {
+.combo-box .context-menu {
     -fx-background-color: -fx-primary;
     -fx-text-fill: white;
 }
 
-.choice-box .menu-item:focused {
+.combo-box .menu-item:focused {
     -fx-background-color: -fx-secondarybackground;
 }
 
-.choice-box .menu-item:focused > .label{
+.combo-box .menu-item:focused > .label{
     -fx-text-fill: -fx-secondary;
     -fx-background-color: -fx-secondarybackground;
     -fx-border-color: white;
 }
 
-.choice-box .menu-item > .label {
+.combo-box .menu-item > .label {
     -fx-text-fill: white;
 }
 
-.choice-box > .label {
+.combo-box > .label {
     -fx-text-fill: white;
 }
 

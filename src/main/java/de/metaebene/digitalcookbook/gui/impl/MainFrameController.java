@@ -7,10 +7,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
@@ -22,7 +19,7 @@ public class MainFrameController implements Initializable {
 
     public ListView<Recipe> recipes;
     public TextField searchField;
-    public ChoiceBox<RecipeType> mealSelection;
+    public ComboBox<RecipeType> mealSelection;
 
     private ObservableList observableList;
 
