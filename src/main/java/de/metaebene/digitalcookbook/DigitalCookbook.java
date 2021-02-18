@@ -1,0 +1,88 @@
+package de.metaebene.digitalcookbook;
+
+import de.metaebene.digitalcookbook.file.FileHandler;
+import de.metaebene.digitalcookbook.gui.FrameHandler;
+import de.metaebene.digitalcookbook.recipe.RecipeHandler;
+import de.metaebene.digitalcookbook.recipe.ingredient.IngredientHandler;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.image.Image;
+import javafx.stage.Stage;
+
+import java.io.File;
+
+public class DigitalCookbook extends Application {
+
+    public static DigitalCookbook instance;
+
+    private File dataDir;
+
+    private FrameHandler frameHandler;
+    private IngredientHandler ingredientHandler;
+    private RecipeHandler recipeHandler;
+    private FileHandler fileHandler;
+
+    private Stage stage;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) {
+        instance = this;
+        this.stage = primaryStage;
+
+        this.dataDir = new File(System.getProperty("user.home"), "DigitalCookBook");
+        if (!this.dataDir.isDirectory()) {
+            this.dataDir.mkdirs();
+        }
+
+        this.frameHandler = new FrameHandler();
+        this.ingredientHandler = new IngredientHandler();
+        this.recipeHandler = new RecipeHandler();
+        this.fileHandler = new FileHandler();
+
+        try {
+            Parent p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+            Scene scene = new Scene(p);
+
+            primaryStage.setTitle("Digital Cookbook");
+            primaryStage.getIcons().add(new Image("icons/icon.png"));
+
+            scene.getStylesheets().add("style.css");
+
+            primaryStage.setScene(scene);
+            primaryStage.setResizable(false);
+            primaryStage.show();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
+    public File getDataDir() {
+        return dataDir;
+    }
+
+    public FrameHandler getFrameHandler() {
+        return frameHandler;
+    }
+
+    public IngredientHandler getIngredientHandler() {
+        return ingredientHandler;
+    }
+
+    public RecipeHandler getRecipeHandler() {
+        return recipeHandler;
+    }
+
+    public FileHandler getFileHandler() {
+        return fileHandler;
+    }
+}
