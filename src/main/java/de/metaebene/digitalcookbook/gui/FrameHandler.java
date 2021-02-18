@@ -25,6 +25,7 @@ public class FrameHandler {
             p = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
             Scene scene = new Scene(p);
 
+            scene.getStylesheets().add("style.css");
 
             DigitalCookbook.instance.getStage().setScene(scene);
 
@@ -38,6 +39,8 @@ public class FrameHandler {
         try {
             p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
             Scene scene = new Scene(p);
+
+            scene.getStylesheets().add("style.css");
 
             this.currentRecipe = null;
 

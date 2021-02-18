@@ -1,82 +1,55 @@
-/*
-    Created on : 11 Nov, 2017, 4:42:53 AM
-    Author     : afsal villan
-*/
-
-* {
-    -fx-primary: #2A2E37;
-    -fx-secondary: #1976D2;
-    -fx-primarytext: #ffffff;
-    -fx-secondarybackground: #383f43;
-    -fx-blue: #1976D2;
-    -fx-red: #FF0000;
-    -fx-color-1: #1976D2;
-    -fx-background-color: #2b3036;
-}
-
+/* Redefine base colors */
 .root {
-    -fx-background-color: -fx-primary;
+    -fx-base: rgb(50, 50, 50);
+    -fx-background: rgb(38, 38, 38);
+
+    /* make controls (buttons, thumb, etc.) slightly lighter */
+    /* text fields and table rows background */
+    -fx-control-inner-background: rgb(55, 55, 55);
+    /* version of -fx-control-inner-background for alternative rows */
+    -fx-control-inner-background-alt: derive(-fx-control-inner-background, 2.5%);
+
+    /* text colors depending on background's brightness */
+    -fx-light-text-color: rgb(220, 220, 220);
+    -fx-mid-text-color: rgb(100, 100, 100);
+    -fx-dark-text-color: rgb(20, 20, 20);
+
+    /* selected text, selected items*/
+    -fx-accent: rgb(31, 94, 131);
+
+    /* unfocused, selected elements */
+    -fx-selection-bar-non-focused: rgb(31, 94, 131);
 }
 
 .button {
-    -fx-text-fill: -fx-primarytext;
-    -fx-background-color: -fx-primary;
-    -fx-border-color: -fx-secondary;
-    -fx-border-radius: 15px;
-    -fx-background-radius: 15px;
-    -fx-font-size: 10pt;
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+    -fx-border-color: rgb(31, 94, 131);
+    -fx-border-radius: 2px;
 }
 
-.button:hover, .button:focused {
-    -fx-border-color: -fx-secondary;
-    -fx-background-color: -fx-secondary;
-    -fx-text-fill: -fx-primary;
+/* Fix derived prompt color for text fields */
+.text-input {
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, +50%);
 }
 
-.list-cell {
-    -fx-text-fill: -fx-primarytext;
-    -fx-background-color: -fx-secondarybackground;
-    -fx-border-color: #778485;
-    -fx-border-radius: 1px;
+/* Keep prompt invisible when focused (above color fix overrides it) */
+.text-input:focused {
+    -fx-prompt-text-fill: transparent;
 }
 
-.list-view {
-    -fx-text-fill: -fx-primarytext;
-    -fx-border-color: -fx-primary;
-    -fx-border-radius: 1px;
+/* Fix scroll bar buttons arrows colors */
+.scroll-bar > .increment-button > .increment-arrow,
+.scroll-bar > .decrement-button > .decrement-arrow {
+    -fx-background-color: -fx-mark-highlight-color, rgb(220, 220, 220);
 }
 
-.text-field {
-    -fx-font-size: 12pt;
-    -jfx-focus-color: -fx-secondary;
-    -fx-text-fill: derive(-fx-secondary, 20%);
+.scroll-bar > .increment-button:hover > .increment-arrow,
+.scroll-bar > .decrement-button:hover > .decrement-arrow {
+    -fx-background-color: -fx-mark-highlight-color, rgb(31, 94, 131);
 }
 
-.combo-box > * {
-    -fx-background-color: -fx-secondarybackground;
+.scroll-bar > .increment-button:pressed > .increment-arrow,
+.scroll-bar > .decrement-button:pressed > .decrement-arrow {
+    -fx-background-color: -fx-mark-highlight-color, rgb(31, 94, 131);
 }
-
-.combo-box .context-menu {
-    -fx-background-color: -fx-primary;
-    -fx-text-fill: white;
-}
-
-.combo-box .menu-item:focused {
-    -fx-background-color: -fx-secondarybackground;
-}
-
-.combo-box .menu-item:focused > .label{
-    -fx-text-fill: -fx-secondary;
-    -fx-background-color: -fx-secondarybackground;
-    -fx-border-color: white;
-}
-
-.combo-box .menu-item > .label {
-    -fx-text-fill: white;
-}
-
-.combo-box > .label {
-    -fx-text-fill: white;
-}
-
-
