@@ -34,8 +34,8 @@
                     <children>
                         <Button fx:id="settingsButton" layoutX="391.0" layoutY="359.0" mnemonicParsing="false"
                                 text="Einstellungen"/>
-                        <ComboBox fx:id="mealSelection" layoutX="376.0" layoutY="14.0" prefHeight="25.0" prefWidth="102.0"/>
-                        <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" minHeight="25.0" minWidth="350.0"/>
+                        <ComboBox fx:id="mealSelection" layoutX="350.0" layoutY="14.0" prefHeight="25.0" prefWidth="120.0"/>
+                        <TextField fx:id="searchField" layoutX="14.0" layoutY="14.0" minHeight="25.0" minWidth="325.0"/>
                         <ListView fx:id="recipes" layoutX="14.0" layoutY="54.0" minHeight="100.0" minWidth="463.0"/>
                     </children>
                 </AnchorPane>
