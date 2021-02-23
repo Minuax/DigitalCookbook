@@ -15,7 +15,7 @@ public class IngredientHandler {
 
     }
 
-    public Ingredient getIngredientByID(int id) {
+    public Ingredient getIngredientByID(String id) {
         Ingredient ingredient = null;
         for (Ingredient ingredient1 : this.ingredientArrayList) {
             if (ingredient1.getIngredientID() == id) {
@@ -23,7 +23,7 @@ public class IngredientHandler {
             }
         }
 
-        return new Ingredient(5, "test", IngredientType.KILOGRAMM);
+        return new Ingredient("00000001", "test", IngredientType.KILOGRAMM);
     }
 
     public IngredientType parseType(String name) {

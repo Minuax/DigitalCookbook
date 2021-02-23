@@ -2,17 +2,17 @@ package de.metaebene.digitalcookbook.recipe.ingredient.impl;
 
 public class Ingredient {
 
-    private int ingredientID;
+    private String ingredientID;
     private String ingredientName;
     private IngredientType ingredientType;
 
-    public Ingredient(int ingredientID, String ingredientName, IngredientType ingredientType) {
+    public Ingredient(String ingredientID, String ingredientName, IngredientType ingredientType) {
         this.ingredientID = ingredientID;
         this.ingredientName = ingredientName;
         this.ingredientType = ingredientType;
     }
 
-    public int getIngredientID() {
+    public String getIngredientID() {
         return ingredientID;
     }
 

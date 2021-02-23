@@ -30,7 +30,7 @@ public class RecipeFrameController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // imageView.setImage(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeImageArrayList().isEmpty() ? new Image("placeholder.png") : DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeImageArrayList().get(0));
+        imageView.setImage(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeImage());
         titleLabel.setText(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeTitle());
 
         descriptionField.setText(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeDescription());
