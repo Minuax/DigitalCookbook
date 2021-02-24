@@ -12,11 +12,6 @@ public class FrameHandler {
 
     private Recipe currentRecipe;
 
-
-    public FrameHandler() {
-
-    }
-
     public void openRecipeFrame(Recipe recipe) {
         Parent p = null;
         this.currentRecipe = recipe;

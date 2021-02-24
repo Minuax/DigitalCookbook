@@ -4,12 +4,10 @@ import java.util.ArrayList;
 
 public class RecipeHandler {
 
-    private ArrayList<Recipe> recipeArrayList;
+    private final ArrayList<Recipe> recipeArrayList;
 
     public RecipeHandler() {
         this.recipeArrayList = new ArrayList<>();
-
-
     }
 
     public ArrayList<Recipe> getRecipesByType(RecipeType recipeType) {

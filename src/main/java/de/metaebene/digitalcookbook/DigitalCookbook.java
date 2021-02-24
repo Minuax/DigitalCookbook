@@ -37,7 +37,8 @@ public class DigitalCookbook extends Application {
 
         this.dataDir = new File(System.getProperty("user.home"), "DigitalCookBook");
         if (!this.dataDir.isDirectory()) {
-            this.dataDir.mkdirs();
+            if (this.dataDir.mkdirs())
+                System.out.println("Working directory erstellt!");
         }
 
         this.frameHandler = new FrameHandler();

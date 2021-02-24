@@ -50,7 +50,7 @@ public class MainFrameController implements Initializable {
                         setText(null);
                         setGraphic(null);
                     } else {
-                        //imageView.setImage(recipe.getRecipeImageArrayList().isEmpty() ? new Image("placeholder.png") : recipe.getRecipeImageArrayList().get(0));
+                        imageView.setImage(recipe.getRecipeImage());
                         imageView.setFitWidth(222);
                         imageView.setFitHeight(130);
 
@@ -62,8 +62,6 @@ public class MainFrameController implements Initializable {
                         setPrefWidth(param.getWidth() - 20);
 
                         setGraphic(imageView);
-
-
                     }
                 } else {
                     setText(null);

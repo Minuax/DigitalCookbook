@@ -14,12 +14,13 @@ import java.nio.charset.StandardCharsets;
 
 public class FileHandler {
 
-    private File recipeDir;
+    private final File recipeDir;
 
     public FileHandler() {
         this.recipeDir = new File(DigitalCookbook.instance.getDataDir(), "recipes");
         if (!this.recipeDir.isDirectory()) {
-            this.recipeDir.mkdirs();
+            if (this.recipeDir.mkdirs())
+                System.out.println("Recipe directory created");
         }
 
         try {
@@ -33,9 +34,11 @@ public class FileHandler {
         for (Recipe recipe : DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList()) {
             File directory = new File(recipeDir, recipe.getRecipeID() + "");
             if (directory.exists() || directory.isDirectory())
-                directory.delete();
+                if (directory.delete())
+                    System.out.println("Found recipe directory, deleting.");
 
-            directory.mkdirs();
+            if (directory.mkdirs())
+                System.out.println("Creating new recipe directory");
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("recipeID", recipe.getRecipeID());
@@ -78,7 +81,7 @@ public class FileHandler {
 
                         JSONObject jsonObject = new JSONObject(text);
 
-                        Recipe recipe = new Recipe(jsonObject.getInt("recipeID"), jsonObject.getInt("recipePortions"), jsonObject.getString("recipeTitle"), jsonObject.getString("recipeDescription"), jsonObject.getString("recipeWorktime"), jsonObject.getString("recipeCooktime"), jsonObject.getEnum(RecipeType.class, "recipeType"));
+                        Recipe recipe = new Recipe(jsonObject.getString("recipeID"), jsonObject.getInt("recipePortions"), jsonObject.getString("recipeTitle"), jsonObject.getString("recipeDescription"), jsonObject.getString("recipeWorktime"), jsonObject.getString("recipeCooktime"), jsonObject.getEnum(RecipeType.class, "recipeType"));
 
                         JSONArray recipeInstructionJSONArray = jsonObject.getJSONArray("recipeInstructionArrayList");
                         for (int i = 0; i < recipeInstructionJSONArray.length(); i++) {
@@ -89,7 +92,7 @@ public class FileHandler {
 
                         JSONArray recipeIngredientJSONArray = jsonObject.getJSONArray("recipeIngredientArrayList");
                         for (int i = 0; i < recipeIngredientJSONArray.length(); i++) {
-                            Ingredient ingredient = DigitalCookbook.instance.getIngredientHandler().getIngredientByID(Integer.parseInt(recipeIngredientJSONArray.getString(i).split(":")[0]));
+                            Ingredient ingredient = DigitalCookbook.instance.getIngredientHandler().getIngredientByID(recipeIngredientJSONArray.getString(i).split(":")[0]);
                             recipe.getRecipeIngredientHashmap().put(ingredient, Double.parseDouble(recipeIngredientJSONArray.getString(i).split(":")[1]));
                         }
 
