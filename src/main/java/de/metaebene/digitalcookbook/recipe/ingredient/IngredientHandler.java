@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class IngredientHandler {
 
-    private ArrayList<Ingredient> ingredientArrayList;
+    private final ArrayList<Ingredient> ingredientArrayList;
 
     public IngredientHandler() {
         this.ingredientArrayList = new ArrayList<>();

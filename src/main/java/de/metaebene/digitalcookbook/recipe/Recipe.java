@@ -9,14 +9,14 @@ import java.util.HashMap;
 
 public class Recipe {
 
-    private String recipeID, recipeTitle, recipeDescription, recipeWorktime, recipeCooktime;
-    private int recipePortions;
-    private RecipeType recipeType;
+    private final String recipeID, recipeTitle, recipeDescription, recipeWorktime, recipeCooktime;
+    private final int recipePortions;
+    private final RecipeType recipeType;
 
     private Image recipeImage;
 
-    private ArrayList<Instruction> recipeInstructionArrayList;
-    private HashMap<Ingredient, Double> recipeIngredientHashmap;
+    private final ArrayList<Instruction> recipeInstructionArrayList;
+    private final HashMap<Ingredient, Double> recipeIngredientHashmap;
 
     public Recipe(String recipeID, int recipePortions, String recipeTitle, String recipeDescription, String recipeWorktime, String recipeCooktime, RecipeType recipeType) {
         this.recipeID = recipeID;
@@ -28,6 +28,10 @@ public class Recipe {
         this.recipeType = recipeType;
 
         this.recipeImage = new Image("http://fjg31.ddns.net/recipeimages/" + this.recipeID + ".jpg");
+
+        if (this.recipeImage.getHeight() == 0) {
+            this.recipeImage = new Image("http://fjg31.ddns.net/recipeimages/404.jpg");
+        }
 
         this.recipeInstructionArrayList = new ArrayList<>();
         this.recipeIngredientHashmap = new HashMap<>();

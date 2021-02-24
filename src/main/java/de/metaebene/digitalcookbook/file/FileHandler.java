@@ -14,12 +14,13 @@ import java.nio.charset.StandardCharsets;
 
 public class FileHandler {
 
-    private File recipeDir;
+    private final File recipeDir;
 
     public FileHandler() {
         this.recipeDir = new File(DigitalCookbook.instance.getDataDir(), "recipes");
         if (!this.recipeDir.isDirectory()) {
-            this.recipeDir.mkdirs();
+            if (this.recipeDir.mkdirs())
+                System.out.println("Recipe directory created");
         }
 
         try {
@@ -33,9 +34,11 @@ public class FileHandler {
         for (Recipe recipe : DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList()) {
             File directory = new File(recipeDir, recipe.getRecipeID() + "");
             if (directory.exists() || directory.isDirectory())
-                directory.delete();
+                if (directory.delete())
+                    System.out.println("Found recipe directory, deleting.");
 
-            directory.mkdirs();
+            if (directory.mkdirs())
+                System.out.println("Creating new recipe directory");
 
             JSONObject jsonObject = new JSONObject();
             jsonObject.put("recipeID", recipe.getRecipeID());
