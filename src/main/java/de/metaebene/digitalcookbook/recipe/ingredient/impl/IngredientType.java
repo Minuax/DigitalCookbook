@@ -13,7 +13,7 @@ public enum IngredientType {
     PACKUNG(" Packung"),
     TROPFEN(" Tropen"),
     SPRITZER(" Spritzer"),
-    MESSERSPITZE(" Messerspitze"),
+    MESSERSPITZE(" Messer"),
     TASSE(" Tasse"),
     BUND(" Bund");
 

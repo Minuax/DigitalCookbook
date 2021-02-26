@@ -61,6 +61,12 @@ public class DigitalCookbook extends Application {
         } catch (Exception e) {
             e.printStackTrace();
         }
+
+        Runtime.getRuntime().addShutdownHook(new Thread() {
+            public void run() {
+                fileHandler.saveRecipes();
+            }
+        });
     }
 
     public Stage getStage() {

@@ -18,13 +18,13 @@
     -fx-accent: rgb(31, 94, 131);
 
     /* unfocused, selected elements */
-    -fx-selection-bar-non-focused: rgb(31, 94, 131);
+    -fx-selection-bar-non-focused: rgb(42,42,42);
 }
 
 .button {
     -fx-focus-color: transparent;
     -fx-faint-focus-color: transparent;
-    -fx-border-color: rgb(31, 94, 131);
+    -fx-border-color: rgb(42,42,42);
     -fx-border-radius: 2px;
 }
 
@@ -35,7 +35,7 @@
 
 /* Fix derived prompt color for text fields */
 .text-input {
-    -fx-prompt-text-fill: derive(-fx-control-inner-background, +50%);
+    -fx-prompt-text-fill: derive(-fx-control-inner-background, +50%)!important;
 }
 
 /* Keep prompt invisible when focused (above color fix overrides it) */
@@ -46,15 +46,15 @@
 /* Fix scroll bar buttons arrows colors */
 .scroll-bar > .increment-button > .increment-arrow,
 .scroll-bar > .decrement-button > .decrement-arrow {
-    -fx-background-color: -fx-mark-highlight-color, rgb(220, 220, 220);
+    -fx-background-color: -fx-mark-highlight-color, rgb(42, 42, 42);
 }
 
 .scroll-bar > .increment-button:hover > .increment-arrow,
 .scroll-bar > .decrement-button:hover > .decrement-arrow {
-    -fx-background-color: -fx-mark-highlight-color, rgb(31, 94, 131);
+    -fx-background-color: -fx-mark-highlight-color, rgb(42, 42, 42);
 }
 
 .scroll-bar > .increment-button:pressed > .increment-arrow,
 .scroll-bar > .decrement-button:pressed > .decrement-arrow {
-    -fx-background-color: -fx-mark-highlight-color, rgb(31, 94, 131);
+    -fx-background-color: -fx-mark-highlight-color, rgb(42, 42, 42);
 }

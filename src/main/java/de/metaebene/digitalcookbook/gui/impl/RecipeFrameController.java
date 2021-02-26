@@ -53,7 +53,7 @@ public class RecipeFrameController implements Initializable {
         addToShoppingcartButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                DigitalCookbook.instance.getFileHandler().saveRecipes();
+                System.out.println("todo");
             }
         });
     }

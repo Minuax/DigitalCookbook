@@ -54,7 +54,7 @@ public class MainFrameController implements Initializable {
                         imageView.setFitWidth(222);
                         imageView.setFitHeight(130);
 
-                        setText(recipe.getRecipeTitle() + "\n" + recipe.getRecipeDescription());
+                        setText(recipe.getRecipeTitle() + "\n" + recipe.getRecipeDescription() + "\n\nPortionen: " + recipe.getRecipePortions() + "\nZubereitungszeit: " + recipe.getRecipeWorktime() + "\nGarzeit: " + recipe.getRecipeCooktime());
                         setWrapText(true);
 
                         setMinWidth(param.getWidth() - 20);

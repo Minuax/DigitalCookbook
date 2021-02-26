@@ -9,8 +9,8 @@ import java.util.HashMap;
 
 public class Recipe {
 
-    private final String recipeID, recipeTitle, recipeDescription, recipeWorktime, recipeCooktime;
-    private final int recipePortions;
+    private final int recipeID, recipePortions;
+    private final String recipeTitle, recipeDescription, recipeWorktime, recipeCooktime;
     private final RecipeType recipeType;
 
     private Image recipeImage;
@@ -18,7 +18,7 @@ public class Recipe {
     private final ArrayList<Instruction> recipeInstructionArrayList;
     private final HashMap<Ingredient, Double> recipeIngredientHashmap;
 
-    public Recipe(String recipeID, int recipePortions, String recipeTitle, String recipeDescription, String recipeWorktime, String recipeCooktime, RecipeType recipeType) {
+    public Recipe(int recipeID, int recipePortions, String recipeTitle, String recipeDescription, String recipeWorktime, String recipeCooktime, RecipeType recipeType) {
         this.recipeID = recipeID;
         this.recipePortions = recipePortions;
         this.recipeTitle = recipeTitle;
@@ -37,7 +37,7 @@ public class Recipe {
         this.recipeIngredientHashmap = new HashMap<>();
     }
 
-    public String getRecipeID() {
+    public int getRecipeID() {
         return recipeID;
     }
 
