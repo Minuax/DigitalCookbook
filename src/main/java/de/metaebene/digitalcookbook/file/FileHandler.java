@@ -5,11 +5,13 @@ import de.metaebene.digitalcookbook.recipe.Recipe;
 import de.metaebene.digitalcookbook.recipe.RecipeType;
 import de.metaebene.digitalcookbook.recipe.ingredient.impl.Ingredient;
 import de.metaebene.digitalcookbook.recipe.instruction.Instruction;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.io.*;
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 
 public class FileHandler {
@@ -21,6 +23,41 @@ public class FileHandler {
         if (!this.recipeDir.isDirectory()) {
             if (this.recipeDir.mkdirs())
                 System.out.println("Recipe directory created");
+        }
+
+        try {
+            loadRecipes();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        downloadRecipes();
+    }
+
+    public void downloadRecipes() {
+        int recipeCount = DigitalCookbook.instance.getRecipeHandler().getRecipeCount();
+        if (DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList().size() != recipeCount) {
+            for (File file : recipeDir.listFiles()) {
+                file.delete();
+            }
+
+            System.out.println("Recipe count does not match, redownloading.");
+            for (int i = 0; i < recipeCount; i++) {
+                System.out.println("Not downloading Recipe with ID " + i);
+                File recipeDir = new File(this.recipeDir, i + "");
+                recipeDir.mkdirs();
+
+                File recipeFile = new File(recipeDir, i + ".json");
+                File recipeImage = new File(recipeDir, i + ".jpg");
+
+                try {
+                    FileUtils.copyURLToFile(new URL("http://fjg31.ddns.net/recipes/" + i + "/" + i + ".json"), recipeFile);
+                    FileUtils.copyURLToFile(new URL("http://fjg31.ddns.net/recipes/" + i + "/" + i + ".jpg"), recipeImage);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            System.out.println("Finished downloading recipes.");
         }
 
         try {
@@ -72,6 +109,7 @@ public class FileHandler {
     }
 
     public void loadRecipes() throws IOException {
+        DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList().clear();
         for (File file : this.recipeDir.listFiles()) {
             if (file.isDirectory()) {
                 for (File recipeFile : file.listFiles()) {
