@@ -13,7 +13,7 @@ public class FrameHandler {
     private Recipe currentRecipe;
 
     public void openRecipeFrame(Recipe recipe) {
-        Parent p = null;
+        Parent p;
         this.currentRecipe = recipe;
 
         try {
@@ -29,8 +29,24 @@ public class FrameHandler {
         }
     }
 
+    public void openShoppingListFrame() {
+        Parent p;
+
+        try {
+            p = FXMLLoader.load(getClass().getResource("/ShoppingList.fxml"));
+            Scene scene = new Scene(p);
+
+            scene.getStylesheets().add("style.css");
+
+            DigitalCookbook.instance.getStage().setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     public void backToMainMenu() {
-        Parent p = null;
+        Parent p;
         try {
             p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
             Scene scene = new Scene(p);

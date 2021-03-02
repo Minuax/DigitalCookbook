@@ -5,10 +5,10 @@ import de.metaebene.digitalcookbook.recipe.Recipe;
 import de.metaebene.digitalcookbook.recipe.RecipeType;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -20,8 +20,10 @@ public class MainFrameController implements Initializable {
     public ListView<Recipe> recipes;
     public TextField searchField;
     public ComboBox<RecipeType> mealSelection;
+    public Button shoppingListButton;
+    public Button settingsButton;
 
-    private ObservableList observableList;
+    private ObservableList<Recipe> observableList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,7 +42,7 @@ public class MainFrameController implements Initializable {
         recipes.setMaxHeight(280);
 
         recipes.setCellFactory(param -> new ListCell<Recipe>() {
-            private ImageView imageView = new ImageView();
+            private final ImageView imageView = new ImageView();
 
             @Override
             public void updateItem(Recipe recipe, boolean empty) {
@@ -54,7 +56,7 @@ public class MainFrameController implements Initializable {
                         imageView.setFitWidth(222);
                         imageView.setFitHeight(130);
 
-                        setText(recipe.getRecipeTitle() + "\n" + recipe.getRecipeDescription());
+                        setText(recipe.getRecipeTitle() + "\n" + recipe.getRecipeDescription() + "\n\nPortionen: " + recipe.getRecipePortions() + "\nZubereitungszeit: " + recipe.getRecipeWorktime() + "\nGarzeit: " + recipe.getRecipeCooktime());
                         setWrapText(true);
 
                         setMinWidth(param.getWidth() - 20);
@@ -88,6 +90,8 @@ public class MainFrameController implements Initializable {
             recipes.setItems(observableList);
             recipes.refresh();
         });
+
+        shoppingListButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openShoppingListFrame());
     }
 
 }
