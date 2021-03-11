@@ -80,6 +80,6 @@ public class ShoppingListController implements Initializable {
             }
         });
 
-        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().backToMainMenu());
+        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openMainMenu());
     }
 }

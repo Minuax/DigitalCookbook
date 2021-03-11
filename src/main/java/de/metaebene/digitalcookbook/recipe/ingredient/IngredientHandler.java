@@ -1,9 +1,11 @@
 package de.metaebene.digitalcookbook.recipe.ingredient;
 
+import de.metaebene.digitalcookbook.DigitalCookbook;
 import de.metaebene.digitalcookbook.recipe.ingredient.impl.Ingredient;
 import de.metaebene.digitalcookbook.recipe.ingredient.impl.IngredientType;
 
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
@@ -15,8 +17,6 @@ public class IngredientHandler {
 
     public IngredientHandler() {
         this.ingredientArrayList = new ArrayList<>();
-
-        downloadIngredients();
     }
 
     public IngredientType parseType(String name) {
@@ -28,17 +28,29 @@ public class IngredientHandler {
         return ingredientType;
     }
 
+    /**
+     * public Ingredient parseIngredient(int ingredientID) {
+     * Ingredient ingredient = null;
+     * try {
+     * BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/parseingredient.php?id=" + ingredientID)).openStream()));
+     * String result = bufferedReader.readLine();
+     * <p>
+     * bufferedReader.close();
+     * if (result != null && !result.equalsIgnoreCase("notfound"))
+     * ingredient = new Ingredient(ingredientID, result.split(":")[1], parseType(result.split(":")[2]));
+     * } catch (IOException e) {
+     * System.out.println("we fucked up :C");
+     * }
+     * return ingredient;
+     * }
+     **/
     public Ingredient parseIngredient(int ingredientID) {
         Ingredient ingredient = null;
-        try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/parseingredient.php?id=" + ingredientID)).openStream()));
-            String result = bufferedReader.readLine();
 
-            bufferedReader.close();
-            if (result != null && !result.equalsIgnoreCase("notfound"))
-                ingredient = new Ingredient(ingredientID, result.split(":")[1], parseType(result.split(":")[2]));
-        } catch (IOException e) {
-            System.out.println("we fucked up :C");
+        for (Ingredient i : this.ingredientArrayList) {
+            if (i.getIngredientID() == ingredientID) {
+                ingredient = i;
+            }
         }
         return ingredient;
     }
@@ -68,21 +80,19 @@ public class IngredientHandler {
         return ingredient;
     }
 
-
-    public void downloadIngredients() {
+    public int getIngredientCount() {
+        int ingredientCount = 0;
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/listingredients.php")).openStream()));
-
-            String readLine = bufferedReader.readLine();
-
-            for (String line : readLine.split("<br>")) {
-                this.ingredientArrayList.add(new Ingredient(Integer.parseInt(line.split(":")[0]), line.split(":")[1], parseType(line.split(":")[2])));
-            }
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/ingredientsize.php")).openStream()));
+            String result = bufferedReader.readLine();
 
             bufferedReader.close();
+            if (result != null && !result.equalsIgnoreCase("error"))
+                ingredientCount = Integer.parseInt(result);
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("we fucked up :C");
         }
+        return ingredientCount;
     }
 
     public ArrayList<Ingredient> getIngredientArrayList() {

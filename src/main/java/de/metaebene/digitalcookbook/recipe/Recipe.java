@@ -65,9 +65,7 @@ public class Recipe {
         return recipeImage;
     }
 
-    public ArrayList<Instruction> getRecipeInstructionArrayList() {
-        return recipeInstructionArrayList;
-    }
+    public ArrayList<Instruction> getRecipeInstructionArrayList() { return recipeInstructionArrayList; }
 
     public HashMap<Ingredient, Double> getRecipeIngredientHashmap() { return recipeIngredientHashmap; }
 

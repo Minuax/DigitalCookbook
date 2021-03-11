@@ -4,6 +4,7 @@ import de.metaebene.digitalcookbook.file.FileHandler;
 import de.metaebene.digitalcookbook.gui.FrameHandler;
 import de.metaebene.digitalcookbook.recipe.RecipeHandler;
 import de.metaebene.digitalcookbook.recipe.ingredient.IngredientHandler;
+import de.metaebene.digitalcookbook.web.WebHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,8 +24,12 @@ public class DigitalCookbook extends Application {
     private IngredientHandler ingredientHandler;
     private RecipeHandler recipeHandler;
     private FileHandler fileHandler;
+    private WebHandler webHandler;
 
     private Stage stage;
+
+    private String username;
+    private int userID;
 
     public static void main(String[] args) {
         launch(args);
@@ -45,9 +50,10 @@ public class DigitalCookbook extends Application {
         this.ingredientHandler = new IngredientHandler();
         this.recipeHandler = new RecipeHandler();
         this.fileHandler = new FileHandler();
+        this.webHandler = new WebHandler();
 
         try {
-            Parent p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+            Parent p = FXMLLoader.load(getClass().getResource("/Login.fxml"));
             Scene scene = new Scene(p);
 
             primaryStage.setTitle("Digital Cookbook");
@@ -65,6 +71,11 @@ public class DigitalCookbook extends Application {
         Runtime.getRuntime().addShutdownHook(new Thread(() -> fileHandler.saveRecipes()));
     }
 
+    public void setData(String username, int userID) {
+        this.username = username;
+        this.userID = userID;
+    }
+
     public Stage getStage() {
         return stage;
     }
@@ -77,7 +88,9 @@ public class DigitalCookbook extends Application {
         return frameHandler;
     }
 
-    public IngredientHandler getIngredientHandler() { return ingredientHandler; }
+    public IngredientHandler getIngredientHandler() {
+        return ingredientHandler;
+    }
 
     public RecipeHandler getRecipeHandler() {
         return recipeHandler;
@@ -85,5 +98,9 @@ public class DigitalCookbook extends Application {
 
     public FileHandler getFileHandler() {
         return fileHandler;
+    }
+
+    public WebHandler getWebHandler() {
+        return webHandler;
     }
 }
