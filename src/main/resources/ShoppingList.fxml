@@ -27,7 +27,7 @@
             </ImageView>
         </AnchorPane>
         <AnchorPane minHeight="160" minWidth="492">
-            <Label layoutX="14.0" layoutY="6.0" text="Einkaufsliste (&lt;username&gt;)">
+            <Label fx:id="titleLabel" layoutX="14.0" layoutY="6.0" text="Einkaufsliste">
                 <font>
                     <Font size="17.0"/>
                 </font>

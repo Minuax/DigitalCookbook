@@ -16,6 +16,8 @@ import java.util.ResourceBundle;
 
 public class ShoppingListController implements Initializable {
 
+    public Label titleLabel;
+
     public TextField amountField;
     public ComboBox<String> ingredientSelection;
     public Button addIngredientButton;
@@ -28,6 +30,7 @@ public class ShoppingListController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        titleLabel.setText("Einkaufsliste von " + DigitalCookbook.instance.getUsername() + "");
         ObservableList<String> ingredientList = FXCollections.observableArrayList();
 
         for (Ingredient ingredient : DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList()) {
@@ -80,6 +83,6 @@ public class ShoppingListController implements Initializable {
             }
         });
 
-        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().backToMainMenu());
+        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openMainMenu());
     }
 }

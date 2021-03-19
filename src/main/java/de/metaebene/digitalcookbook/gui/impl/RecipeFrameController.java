@@ -8,7 +8,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.net.URL;
@@ -44,12 +43,12 @@ public class RecipeFrameController implements Initializable {
 
         StringBuilder ingredients = new StringBuilder();
         for (Ingredient ingredient : DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().keySet()) {
-            ingredients.append(ingredient.getIngredientName()).append(", ").append(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().get(ingredient)).append(ingredient.getIngredientType().toString()).append("\n");
+            ingredients.append(ingredient.getIngredientName()).append(", ").append(Math.round(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().get(ingredient))).append(" ").append(ingredient.getIngredientType().toString()).append("\n");
         }
         ingredientField.setText(ingredients.toString());
 
 
-        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().backToMainMenu());
+        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openMainMenu());
         addToShoppingcartButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {

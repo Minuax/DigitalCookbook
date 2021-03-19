@@ -16,21 +16,25 @@ import java.nio.charset.StandardCharsets;
 
 public class FileHandler {
 
-    private final File recipeDir;
+    private final File recipeDir, ingredientFile;
 
     public FileHandler() {
         this.recipeDir = new File(DigitalCookbook.instance.getDataDir(), "recipes");
+        this.ingredientFile = new File(DigitalCookbook.instance.getDataDir(), "ingredients.config");
+
         if (!this.recipeDir.isDirectory()) {
             if (this.recipeDir.mkdirs())
                 System.out.println("Recipe directory created");
         }
 
         try {
+            loadIngredients();
             loadRecipes();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        downloadIngredients();
         downloadRecipes();
     }
 
@@ -43,7 +47,7 @@ public class FileHandler {
 
             System.out.println("Recipe count does not match, redownloading.");
             for (int i = 0; i < recipeCount; i++) {
-                System.out.println("Not downloading Recipe with ID " + i);
+                System.out.println("Now downloading Recipe with ID " + i);
                 File recipeDir = new File(this.recipeDir, i + "");
                 recipeDir.mkdirs();
 
@@ -64,6 +68,27 @@ public class FileHandler {
             loadRecipes();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public void downloadIngredients() {
+        int ingredientCount = DigitalCookbook.instance.getIngredientHandler().getIngredientCount();
+        if (DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList().size() != ingredientCount) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/listingredients.php")).openStream()));
+                String readLine = bufferedReader.readLine();
+
+                for (String line : readLine.split("<br>")) {
+                    DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList().add(new Ingredient(Integer.parseInt(line.split(":")[0]), line.split(":")[1], DigitalCookbook.instance.getIngredientHandler().parseType(line.split(":")[2])));
+
+                }
+
+                bufferedReader.close();
+
+                saveIngredients();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -140,6 +165,80 @@ public class FileHandler {
                 }
             }
         }
+    }
+
+    /**
+     * Method for saving modules
+     */
+    public void saveIngredients() {
+        if (ingredientFile.exists()) {
+            ingredientFile.delete();
+        }
+        try {
+            ingredientFile.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(ingredientFile));
+            for (Ingredient ingredient : DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList()) {
+                writer.write(ingredient.getIngredientID() + ":" + ingredient.getIngredientName() + ":" + ingredient.getIngredientType().toString());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Method for loading modules
+     */
+    public void loadIngredients() {
+        try {
+            if (!ingredientFile.exists()) {
+                ingredientFile.createNewFile();
+            }
+            BufferedReader read = new BufferedReader(new FileReader(ingredientFile));
+            for (Object s : read.lines().toArray()) {
+                String r = (String) s;
+                Ingredient ingredient = new Ingredient(Integer.parseInt(r.split(":")[0]), r.split(":")[1], DigitalCookbook.instance.getIngredientHandler().parseType(r.split(":")[2]));
+                DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList().add(ingredient);
+            }
+            read.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveRememberMe(String username, String password) {
+        File loginFile = new File(DigitalCookbook.instance.getDataDir(), "credentials.config");
+        if (loginFile.exists()) {
+            loginFile.delete();
+        }
+        try {
+            loginFile.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile));
+            writer.write(username + ":" + password);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean checkRememberMe() {
+        File loginFile = new File(DigitalCookbook.instance.getDataDir(), "credentials.config");
+        try {
+            if (!loginFile.exists()) {
+                return false;
+            }
+            BufferedReader read = new BufferedReader(new FileReader(loginFile));
+            for (Object s : read.lines().toArray()) {
+                String r = (String) s;
+                return DigitalCookbook.instance.getWebHandler().auth(r.split(":")[0], r.split(":")[1]);
+            }
+            read.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

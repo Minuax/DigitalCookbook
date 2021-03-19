@@ -1,7 +1,5 @@
 package de.metaebene.digitalcookbook.recipe;
 
-import de.metaebene.digitalcookbook.recipe.ingredient.impl.Ingredient;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -29,7 +27,7 @@ public class RecipeHandler {
     public int getRecipeCount() {
         int recipeCount = 0;
         try {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/ingredientsize.php")).openStream()));
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/recipesize.php")).openStream()));
             String result = bufferedReader.readLine();
 
             bufferedReader.close();

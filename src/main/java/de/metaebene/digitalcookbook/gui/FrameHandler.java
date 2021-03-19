@@ -45,7 +45,35 @@ public class FrameHandler {
         }
     }
 
-    public void backToMainMenu() {
+    public void openLoginFrame() {
+        try {
+            Parent p = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+            Scene scene = new Scene(p);
+
+            scene.getStylesheets().add("style.css");
+
+            DigitalCookbook.instance.getStage().setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openRegisterFrame() {
+        try {
+            Parent p = FXMLLoader.load(getClass().getResource("/Register.fxml"));
+            Scene scene = new Scene(p);
+
+            scene.getStylesheets().add("style.css");
+
+            DigitalCookbook.instance.getStage().setScene(scene);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void openMainMenu() {
         Parent p;
         try {
             p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
