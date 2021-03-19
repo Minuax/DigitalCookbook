@@ -69,7 +69,5 @@ public class Recipe {
 
     public HashMap<Ingredient, Double> getRecipeIngredientHashmap() { return recipeIngredientHashmap; }
 
-    public RecipeType getRecipeType() {
-        return recipeType;
-    }
+    public RecipeType getRecipeType() { return recipeType; }
 }

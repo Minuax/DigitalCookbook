@@ -1,26 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="260.0" prefWidth="250.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="de.metaebene.digitalcookbook.gui.impl.LoginFrameController">
+<?import javafx.scene.image.Image?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="250.0" stylesheets="@style.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111" fx:controller="de.metaebene.digitalcookbook.gui.impl.LoginFrameController">
    <children>
       <TextField id="usernameField" fx:id="usernameField" layoutX="25.0" layoutY="136.0" prefHeight="25.0" prefWidth="200.0" />
       <PasswordField fx:id="passwordField" layoutX="25.0" layoutY="183.0" prefHeight="25.0" prefWidth="200.0" />
+      <CheckBox fx:id="remembermeBox" layoutX="65.0" layoutY="215.0" mnemonicParsing="false" text="Eingeloggt bleiben" />
       <Label layoutX="25.0" layoutY="119.0" text="Benutzername" />
       <Label layoutX="25.0" layoutY="166.0" text="Passwort" />
-      <Button fx:id="loginButton" layoutX="27.0" layoutY="219.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Anmelden" />
-      <Button fx:id="registerButton" layoutX="135.0" layoutY="219.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Registrieren" />
+      <Button fx:id="loginButton" layoutX="26.0" layoutY="239.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Anmelden" />
+      <Button fx:id="registerButton" layoutX="134.0" layoutY="239.0" mnemonicParsing="false" prefHeight="27.0" prefWidth="90.0" text="Registrieren" />
       <ImageView fitHeight="100.0" fitWidth="100.0" layoutX="75.0" layoutY="-5.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@icons/logo_l.png" />
+             <Image url="@icons/logo_l.png" />
          </image>
       </ImageView>
       <Label layoutX="102.0" layoutY="91.0" text="Login">

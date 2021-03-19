@@ -20,7 +20,7 @@ public class FileHandler {
 
     public FileHandler() {
         this.recipeDir = new File(DigitalCookbook.instance.getDataDir(), "recipes");
-        this.ingredientFile = new File(DigitalCookbook.instance.getDataDir(), "ingredients.json");
+        this.ingredientFile = new File(DigitalCookbook.instance.getDataDir(), "ingredients.config");
 
         if (!this.recipeDir.isDirectory()) {
             if (this.recipeDir.mkdirs())
@@ -28,12 +28,13 @@ public class FileHandler {
         }
 
         try {
-            loadRecipes();
             loadIngredients();
+            loadRecipes();
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        downloadIngredients();
         downloadRecipes();
     }
 
@@ -71,7 +72,24 @@ public class FileHandler {
     }
 
     public void downloadIngredients() {
+        int ingredientCount = DigitalCookbook.instance.getIngredientHandler().getIngredientCount();
+        if (DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList().size() != ingredientCount) {
+            try {
+                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/listingredients.php")).openStream()));
+                String readLine = bufferedReader.readLine();
 
+                for (String line : readLine.split("<br>")) {
+                    DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList().add(new Ingredient(Integer.parseInt(line.split(":")[0]), line.split(":")[1], DigitalCookbook.instance.getIngredientHandler().parseType(line.split(":")[2])));
+
+                }
+
+                bufferedReader.close();
+
+                saveIngredients();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public void saveRecipes() {
@@ -189,5 +207,38 @@ public class FileHandler {
         }
     }
 
+    public void saveRememberMe(String username, String password) {
+        File loginFile = new File(DigitalCookbook.instance.getDataDir(), "credentials.config");
+        if (loginFile.exists()) {
+            loginFile.delete();
+        }
+        try {
+            loginFile.createNewFile();
+            BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile));
+            writer.write(username + ":" + password);
+            writer.newLine();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public boolean checkRememberMe() {
+        File loginFile = new File(DigitalCookbook.instance.getDataDir(), "credentials.config");
+        try {
+            if (!loginFile.exists()) {
+                return false;
+            }
+            BufferedReader read = new BufferedReader(new FileReader(loginFile));
+            for (Object s : read.lines().toArray()) {
+                String r = (String) s;
+                return DigitalCookbook.instance.getWebHandler().auth(r.split(":")[0], r.split(":")[1]);
+            }
+            read.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
 }

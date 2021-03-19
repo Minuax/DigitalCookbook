@@ -53,7 +53,7 @@ public class DigitalCookbook extends Application {
         this.webHandler = new WebHandler();
 
         try {
-            Parent p = FXMLLoader.load(getClass().getResource("/Login.fxml"));
+            Parent p = FXMLLoader.load(getClass().getResource(fileHandler.checkRememberMe() ? "/Main.fxml" : "/Login.fxml"));
             Scene scene = new Scene(p);
 
             primaryStage.setTitle("Digital Cookbook");
@@ -102,5 +102,13 @@ public class DigitalCookbook extends Application {
 
     public WebHandler getWebHandler() {
         return webHandler;
+    }
+
+    public int getUserID() {
+        return userID;
+    }
+
+    public String getUsername() {
+        return username;
     }
 }
