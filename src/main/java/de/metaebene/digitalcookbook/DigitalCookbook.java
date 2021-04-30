@@ -4,6 +4,7 @@ import de.metaebene.digitalcookbook.file.FileHandler;
 import de.metaebene.digitalcookbook.gui.FrameHandler;
 import de.metaebene.digitalcookbook.recipe.RecipeHandler;
 import de.metaebene.digitalcookbook.recipe.ingredient.IngredientHandler;
+import de.metaebene.digitalcookbook.shoppinglist.ShoppingListHandler;
 import de.metaebene.digitalcookbook.web.WebHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -25,6 +26,7 @@ public class DigitalCookbook extends Application {
     private RecipeHandler recipeHandler;
     private FileHandler fileHandler;
     private WebHandler webHandler;
+    private ShoppingListHandler shoppingListHandler;
 
     private Stage stage;
 
@@ -51,6 +53,7 @@ public class DigitalCookbook extends Application {
         this.recipeHandler = new RecipeHandler();
         this.fileHandler = new FileHandler();
         this.webHandler = new WebHandler();
+        this.shoppingListHandler = new ShoppingListHandler();
 
         try {
             Parent p = FXMLLoader.load(getClass().getResource(fileHandler.checkRememberMe() ? "/Main.fxml" : "/Login.fxml"));
@@ -102,6 +105,10 @@ public class DigitalCookbook extends Application {
 
     public WebHandler getWebHandler() {
         return webHandler;
+    }
+
+    public ShoppingListHandler getShoppingListHandler() {
+        return shoppingListHandler;
     }
 
     public int getUserID() {

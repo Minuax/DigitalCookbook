@@ -46,7 +46,7 @@
                       prefWidth="129.0" promptText="Zutatentyp"/>
             <Label layoutX="354.0" layoutY="32.0" text="Zutat hinzufügen:"/>
             <Label layoutX="354.0" layoutY="160.0" text="Neue Zutat anlegen:"/>
-            <TableView layoutX="14.0" layoutY="35.0" prefHeight="350.0" prefWidth="328.0">
+            <TableView fx:id="toBuyTable" layoutX="14.0" layoutY="35.0" prefHeight="350.0" prefWidth="328.0">
                 <columns>
                     <TableColumn minWidth="235.0" maxWidth="235" text="Zutat" resizable="false"/>
                     <TableColumn minWidth="92.0" maxWidth="92" text="Menge" resizable="false"/>

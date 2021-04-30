@@ -12,5 +12,5 @@ public class ShoppingListHandler {
         this.shoppingList = new HashMap<>();
     }
 
-
+    public HashMap<Ingredient, Double> getShoppingList() { return shoppingList; }
 }

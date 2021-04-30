@@ -52,7 +52,15 @@ public class RecipeFrameController implements Initializable {
         addToShoppingcartButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent event) {
-                System.out.println("todo");
+                for (Ingredient ingredient : DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().keySet()) {
+                    if (DigitalCookbook.instance.getShoppingListHandler().getShoppingList().containsKey(ingredient)) {
+                        double amount = DigitalCookbook.instance.getShoppingListHandler().getShoppingList().get(ingredient);
+                        DigitalCookbook.instance.getShoppingListHandler().getShoppingList().remove(ingredient);
+                        DigitalCookbook.instance.getShoppingListHandler().getShoppingList().put(ingredient, amount);
+                    } else {
+                        DigitalCookbook.instance.getShoppingListHandler().getShoppingList().put(ingredient, DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().get(ingredient));
+                    }
+                }
             }
         });
     }
