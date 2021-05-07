@@ -16,8 +16,6 @@
 
     <SplitPane dividerPositions="0.22413793103448276" minHeight="413.0" minWidth="640.0">
         <AnchorPane minHeight="160" minWidth="140">
-            <Button fx:id="shoppingListButton" layoutX="14.0" layoutY="331.0" mnemonicParsing="false"
-                    minHeight="53.0" minWidth="114.0" text="Einkaufsliste"/>
             <ImageView fitHeight="90.0" fitWidth="90.0" layoutX="26.0" layoutY="14.0" pickOnBounds="true"
                        preserveRatio="true">
                 <Image url="icons/logo_l.png"/>

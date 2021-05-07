@@ -20,11 +20,15 @@ public class MainFrameController implements Initializable {
     public ListView<Recipe> recipes;
     public TextField searchField;
     public ComboBox<RecipeType> mealSelection;
-    public Button shoppingListButton;
     public Button settingsButton;
 
     private ObservableList<Recipe> observableList;
 
+    /**
+     * Initialisierungsmethode des MainframeControllers
+     * @param location Ursprung der Grafik-Datei
+     * @param resources Ressourcen für das GUI
+     */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.observableList = FXCollections.observableArrayList(DigitalCookbook.instance.getRecipeHandler().getRecipesByType(RecipeType.HAUPTSPEISE));
@@ -86,12 +90,10 @@ public class MainFrameController implements Initializable {
 
             observableList = FXCollections.observableArrayList(recipeArrayList);
 
-            //put the sorted list into the listview
+
             recipes.setItems(observableList);
             recipes.refresh();
         });
-
-        shoppingListButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openShoppingListFrame());
     }
 
 }

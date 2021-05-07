@@ -19,10 +19,18 @@ public enum IngredientType {
 
     private String name;
 
+    /**
+     * Konstruktor des Enum IngredientType
+     * @param name Übergibt den Namen des Enum
+     */
     IngredientType(String name) {
         this.name = name;
     }
 
+    /**
+     * Gibt den Namen des Ingredient-Type zurück
+     * @return Name des Ingredient-Types
+     */
     @Override
     public String toString() {
         return name;

@@ -12,6 +12,10 @@ public class FrameHandler {
 
     private Recipe currentRecipe;
 
+    /**
+     * Öffnet den RecipeFrame für ein übergebenes Rezept
+     * @param recipe zu-öffnendes Rezept
+     */
     public void openRecipeFrame(Recipe recipe) {
         Parent p;
         this.currentRecipe = recipe;
@@ -29,50 +33,9 @@ public class FrameHandler {
         }
     }
 
-    public void openShoppingListFrame() {
-        Parent p;
-
-        try {
-            p = FXMLLoader.load(getClass().getResource("/ShoppingList.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openLoginFrame() {
-        try {
-            Parent p = FXMLLoader.load(getClass().getResource("/Login.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openRegisterFrame() {
-        try {
-            Parent p = FXMLLoader.load(getClass().getResource("/Register.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
+    /**
+     * Öffnet das Hauptmenü der Applikation
+     */
     public void openMainMenu() {
         Parent p;
         try {
@@ -90,6 +53,10 @@ public class FrameHandler {
         }
     }
 
+    /**
+     * Getter für das momentane Rezept
+     * @return Instanz des momentanen Rezeptes
+     */
     public Recipe getCurrentRecipe() {
         return currentRecipe;
     }

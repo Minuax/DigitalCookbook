@@ -18,6 +18,9 @@ public class FileHandler {
 
     private final File recipeDir, ingredientFile;
 
+    /**
+     * Konstruktor von FileHandler
+     */
     public FileHandler() {
         this.recipeDir = new File(DigitalCookbook.instance.getDataDir(), "recipes");
         this.ingredientFile = new File(DigitalCookbook.instance.getDataDir(), "ingredients.config");
@@ -38,6 +41,11 @@ public class FileHandler {
         downloadRecipes();
     }
 
+    /**
+     * Diese Methodt liest online aus, wie viele Rezepte in der Datenbank hinterlegt sind.
+     * Stimmt die Anzahl nicht mit der geladenen Anzahl von Rezepten überein, wird die Rezeptdatei
+     * gelöscht und anschließen neu heruntergeladen.
+     */
     public void downloadRecipes() {
         int recipeCount = DigitalCookbook.instance.getRecipeHandler().getRecipeCount();
         if (DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList().size() != recipeCount) {
@@ -71,6 +79,11 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Diese Methodt liest online aus, wie viele Zutaten in der Datenbank hinterlegt sind.
+     * Stimmt die Anzahl nicht mit der geladenen Anzahl von Zutaten überein, werden die Zutaten neu heruntergeladen
+     * und anschließend in einer Datei gespeichert
+     */
     public void downloadIngredients() {
         int ingredientCount = DigitalCookbook.instance.getIngredientHandler().getIngredientCount();
         if (DigitalCookbook.instance.getIngredientHandler().getIngredientArrayList().size() != ingredientCount) {
@@ -92,6 +105,9 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Speichert alle geladenen Rezepte in einer individuellen JSON Datei
+     */
     public void saveRecipes() {
         for (Recipe recipe : DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList()) {
             File directory = new File(recipeDir, recipe.getRecipeID() + "");
@@ -133,6 +149,11 @@ public class FileHandler {
         }
     }
 
+    /**
+     * Läd alle Rezepte aus ihren Dateien und fügt sie der Rezeptliste hinzu
+     *
+     * @throws IOException Fehler beim Laden von Rezepten
+     */
     public void loadRecipes() throws IOException {
         DigitalCookbook.instance.getRecipeHandler().getRecipeArrayList().clear();
         for (File file : this.recipeDir.listFiles()) {
@@ -168,7 +189,7 @@ public class FileHandler {
     }
 
     /**
-     * Method for saving modules
+     * Speichert alle geladenen Zutaten in einer Datei
      */
     public void saveIngredients() {
         if (ingredientFile.exists()) {
@@ -188,7 +209,7 @@ public class FileHandler {
     }
 
     /**
-     * Method for loading modules
+     * Läd alle Zutaten aus einer Datei heraus und fügt sie der Zutatenliste hinzu
      */
     public void loadIngredients() {
         try {
@@ -206,39 +227,4 @@ public class FileHandler {
             e.printStackTrace();
         }
     }
-
-    public void saveRememberMe(String username, String password) {
-        File loginFile = new File(DigitalCookbook.instance.getDataDir(), "credentials.config");
-        if (loginFile.exists()) {
-            loginFile.delete();
-        }
-        try {
-            loginFile.createNewFile();
-            BufferedWriter writer = new BufferedWriter(new FileWriter(loginFile));
-            writer.write(username + ":" + password);
-            writer.newLine();
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public boolean checkRememberMe() {
-        File loginFile = new File(DigitalCookbook.instance.getDataDir(), "credentials.config");
-        try {
-            if (!loginFile.exists()) {
-                return false;
-            }
-            BufferedReader read = new BufferedReader(new FileReader(loginFile));
-            for (Object s : read.lines().toArray()) {
-                String r = (String) s;
-                return DigitalCookbook.instance.getWebHandler().auth(r.split(":")[0], r.split(":")[1]);
-            }
-            read.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return false;
-    }
-
 }

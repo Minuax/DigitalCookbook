@@ -4,8 +4,6 @@ import de.metaebene.digitalcookbook.file.FileHandler;
 import de.metaebene.digitalcookbook.gui.FrameHandler;
 import de.metaebene.digitalcookbook.recipe.RecipeHandler;
 import de.metaebene.digitalcookbook.recipe.ingredient.IngredientHandler;
-import de.metaebene.digitalcookbook.shoppinglist.ShoppingListHandler;
-import de.metaebene.digitalcookbook.web.WebHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -15,6 +13,12 @@ import javafx.stage.Stage;
 
 import java.io.File;
 
+/**
+ * Die Klasse "DigitalCookbook" ist die Hauptklasse der Applikation.
+ *
+ * @author Michl, Reilly
+ * @version 1.0.3
+ */
 public class DigitalCookbook extends Application {
 
     public static DigitalCookbook instance;
@@ -25,38 +29,43 @@ public class DigitalCookbook extends Application {
     private IngredientHandler ingredientHandler;
     private RecipeHandler recipeHandler;
     private FileHandler fileHandler;
-    private WebHandler webHandler;
-    private ShoppingListHandler shoppingListHandler;
 
     private Stage stage;
 
-    private String username;
-    private int userID;
-
+    /**
+     * Main-Methode des Programmes
+     *
+     * @param args Startargumente
+     */
     public static void main(String[] args) {
         launch(args);
     }
 
+    /**
+     * Die Start-Methode des GUI, überschreibt die Methode "start()" aus Application.java
+     *
+     * @param primaryStage übergeben Stage
+     */
     @Override
     public void start(Stage primaryStage) {
-        instance = this;
-        this.stage = primaryStage;
+        instance = this; // Instanz der Hauptklasse ertellen und in globaler Variable speichern
+        this.stage = primaryStage; // Stage-Variable setzen
 
-        this.dataDir = new File(System.getProperty("user.home"), "DigitalCookBook");
+        this.dataDir = new File(System.getProperty("user.home"), "DigitalCookBook"); // Datei-Directory definieren
         if (!this.dataDir.isDirectory()) {
             if (this.dataDir.mkdirs())
                 System.out.println("Working directory erstellt!");
         }
 
+        // Instanzen von benötigten Handlern erstellen
         this.frameHandler = new FrameHandler();
         this.ingredientHandler = new IngredientHandler();
         this.recipeHandler = new RecipeHandler();
         this.fileHandler = new FileHandler();
-        this.webHandler = new WebHandler();
-        this.shoppingListHandler = new ShoppingListHandler();
 
         try {
-            Parent p = FXMLLoader.load(getClass().getResource(fileHandler.checkRememberMe() ? "/Main.fxml" : "/Login.fxml"));
+            // GUI-Dateien laden und anzeigen
+            Parent p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
             Scene scene = new Scene(p);
 
             primaryStage.setTitle("Digital Cookbook");
@@ -71,51 +80,54 @@ public class DigitalCookbook extends Application {
             e.printStackTrace();
         }
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> fileHandler.saveRecipes()));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> fileHandler.saveRecipes())); // Programm-Schließung -> Rezepte speichern
     }
 
-    public void setData(String username, int userID) {
-        this.username = username;
-        this.userID = userID;
-    }
-
+    /**
+     * Getter für Stage
+     * @return gibt die Stage-Instanz zurück
+     */
     public Stage getStage() {
         return stage;
     }
 
+    /**
+     * Getter für DataDir
+     * @return gibt die DataDir-Instanz zurück
+     */
     public File getDataDir() {
         return dataDir;
     }
 
+    /**
+     * Getter für FrameHandler
+     * @return gibt die FrameHandler-Instanz zurück
+     */
     public FrameHandler getFrameHandler() {
         return frameHandler;
     }
 
+    /**
+     * Getter für IngredientHandler
+     * @return gibt die IngredientHandler-Instanz zurück
+     */
     public IngredientHandler getIngredientHandler() {
         return ingredientHandler;
     }
 
+    /**
+     * Getter für RecipeHandler
+     * @return gibt die RecipeHandler-Instanz zurück
+     */
     public RecipeHandler getRecipeHandler() {
         return recipeHandler;
     }
 
+    /**
+     * Getter für FileHandler
+     * @return gibt die FileHandler-Instanz zurück
+     */
     public FileHandler getFileHandler() {
         return fileHandler;
-    }
-
-    public WebHandler getWebHandler() {
-        return webHandler;
-    }
-
-    public ShoppingListHandler getShoppingListHandler() {
-        return shoppingListHandler;
-    }
-
-    public int getUserID() {
-        return userID;
-    }
-
-    public String getUsername() {
-        return username;
     }
 }

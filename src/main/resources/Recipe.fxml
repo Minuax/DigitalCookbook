@@ -39,8 +39,6 @@
             </font>
         </Label>
 
-        <Button fx:id="addToShoppingcartButton" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="222.0" text="Zur Einkaufliste hinzufügen"/>
         <Button fx:id="backButton" layoutX="574.0" layoutY="365.0" mnemonicParsing="false" text="Zurück"/>
         <TextArea fx:id="instructionField" editable="false" layoutX="259.0" layoutY="171.0" prefHeight="185.0"
                   prefWidth="362.0" wrapText="true"/>

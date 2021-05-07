@@ -10,10 +10,18 @@ public class RecipeHandler {
 
     private final ArrayList<Recipe> recipeArrayList;
 
+    /**
+     * Konstruktor der Klasse RecipeHandler
+     */
     public RecipeHandler() {
         this.recipeArrayList = new ArrayList<>();
     }
 
+    /**
+     * Listet alle Rezepte eines gebenen Types auf
+     * @param recipeType gesuchter Rezepttyp
+     * @return eine Liste von Rezepten
+     */
     public ArrayList<Recipe> getRecipesByType(RecipeType recipeType) {
         ArrayList<Recipe> recipes = new ArrayList<>();
         for (Recipe recipe : this.recipeArrayList) {
@@ -24,6 +32,10 @@ public class RecipeHandler {
         return recipes;
     }
 
+    /**
+     * Liest die Gesamtzahl von in der Datenbank angelegten Rezepten aus
+     * @return Gesamtzahl aller angelegten Rezepten
+     */
     public int getRecipeCount() {
         int recipeCount = 0;
         try {
@@ -39,10 +51,18 @@ public class RecipeHandler {
         return recipeCount;
     }
 
+    /**
+     * Fügt ein neues Rezept hinzu
+     * @param recipe hinzuzufügendes Rezept
+     */
     public void addRecipe(Recipe recipe) {
         this.recipeArrayList.add(recipe);
     }
 
+    /**
+     * Gibt die Rezeptliste zurück
+     * @return Instanz von recipeArrayList
+     */
     public ArrayList<Recipe> getRecipeArrayList() {
         return recipeArrayList;
     }
