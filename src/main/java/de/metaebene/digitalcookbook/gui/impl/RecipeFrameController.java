@@ -19,18 +19,23 @@ public class RecipeFrameController implements Initializable {
 
     public Label titleLabel;
     public Label ingredientsLabel;
+    public Label worktimeLabel;
+    public Label cooktimeLabel;
+    public Label portionLabel;
 
     public TextArea descriptionField;
     public TextArea ingredientField;
     public TextArea instructionField;
 
     public Button backButton;
-    public Button addToShoppingcartButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         imageView.setImage(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeImage());
         titleLabel.setText(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeTitle());
+        worktimeLabel.setText("Arbeitszeit: " + DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeWorktime());
+        cooktimeLabel.setText("Kochzeit: " + DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeCooktime());
+        portionLabel.setText("Portionen: " + DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipePortions());
 
         descriptionField.setText(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeDescription());
 
@@ -49,11 +54,5 @@ public class RecipeFrameController implements Initializable {
 
 
         backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openMainMenu());
-        addToShoppingcartButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                System.out.println("todo");
-            }
-        });
     }
 }

@@ -4,6 +4,7 @@ import de.metaebene.digitalcookbook.file.FileHandler;
 import de.metaebene.digitalcookbook.gui.FrameHandler;
 import de.metaebene.digitalcookbook.recipe.RecipeHandler;
 import de.metaebene.digitalcookbook.recipe.ingredient.IngredientHandler;
+import de.metaebene.digitalcookbook.settings.SettingsHandler;
 import de.metaebene.digitalcookbook.web.WebHandler;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -21,6 +22,7 @@ public class DigitalCookbook extends Application {
     private File dataDir;
 
     private FrameHandler frameHandler;
+    private SettingsHandler settingsHandler;
     private IngredientHandler ingredientHandler;
     private RecipeHandler recipeHandler;
     private FileHandler fileHandler;
@@ -47,6 +49,7 @@ public class DigitalCookbook extends Application {
         }
 
         this.frameHandler = new FrameHandler();
+        this.settingsHandler = new SettingsHandler();
         this.ingredientHandler = new IngredientHandler();
         this.recipeHandler = new RecipeHandler();
         this.fileHandler = new FileHandler();
@@ -59,7 +62,7 @@ public class DigitalCookbook extends Application {
             primaryStage.setTitle("Digital Cookbook");
             primaryStage.getIcons().add(new Image("icons/icon.png"));
 
-            scene.getStylesheets().add("style.css");
+            scene.getStylesheets().add(this.frameHandler.isDarkMode() ? "style.css" : "style_light.css");
 
             primaryStage.setScene(scene);
             primaryStage.setResizable(false);
@@ -68,12 +71,17 @@ public class DigitalCookbook extends Application {
             e.printStackTrace();
         }
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> fileHandler.saveRecipes()));
+        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+            fileHandler.saveRecipes();
+            settingsHandler.saveSettings();
+        }));
     }
 
     public void setData(String username, int userID) {
         this.username = username;
         this.userID = userID;
+
+        this.stage.setTitle("Digital Cookbook - " + this.username);
     }
 
     public Stage getStage() {
