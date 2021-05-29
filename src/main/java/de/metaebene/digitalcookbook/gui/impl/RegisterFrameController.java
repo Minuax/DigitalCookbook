@@ -81,6 +81,6 @@ public class RegisterFrameController implements Initializable {
                 }
             }
         });
-        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openLoginFrame());
+        backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openFrame("Login"));
     }
 }

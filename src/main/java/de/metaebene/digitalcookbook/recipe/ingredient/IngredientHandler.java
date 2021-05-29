@@ -28,22 +28,6 @@ public class IngredientHandler {
         return ingredientType;
     }
 
-    /**
-     * public Ingredient parseIngredient(int ingredientID) {
-     * Ingredient ingredient = null;
-     * try {
-     * BufferedReader bufferedReader = new BufferedReader(new InputStreamReader((new URL("http://fjg31.ddns.net/parseingredient.php?id=" + ingredientID)).openStream()));
-     * String result = bufferedReader.readLine();
-     * <p>
-     * bufferedReader.close();
-     * if (result != null && !result.equalsIgnoreCase("notfound"))
-     * ingredient = new Ingredient(ingredientID, result.split(":")[1], parseType(result.split(":")[2]));
-     * } catch (IOException e) {
-     * System.out.println("we fucked up :C");
-     * }
-     * return ingredient;
-     * }
-     **/
     public Ingredient parseIngredient(int ingredientID) {
         Ingredient ingredient = null;
 

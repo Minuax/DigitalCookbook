@@ -8,9 +8,8 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
 <AnchorPane maxHeight="400.0" maxWidth="640.0" minHeight="400.0" minWidth="640.0" prefHeight="400.0" prefWidth="640.0"
-            xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111"
+            xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="de.metaebene.digitalcookbook.gui.impl.RecipeFrameController">
 
     <children>
@@ -27,7 +26,7 @@
             </font>
         </Label>
 
-        <TextArea fx:id="descriptionField" editable="false" layoutX="259.0" layoutY="44.0" prefHeight="100.0"
+        <TextArea fx:id="descriptionField" editable="false" layoutX="259.0" layoutY="44.0" prefHeight="41.0"
                   prefWidth="362.0" wrapText="true"/>
 
         <TextArea fx:id="ingredientField" editable="false" layoutX="14.0" layoutY="171.0" prefHeight="185.0"
@@ -39,10 +38,10 @@
             </font>
         </Label>
 
-        <Button fx:id="addToShoppingcartButton" layoutX="14.0" layoutY="365.0" mnemonicParsing="false" prefHeight="25.0"
-                prefWidth="222.0" text="Zur Einkaufliste hinzufügen"/>
         <Button fx:id="backButton" layoutX="574.0" layoutY="365.0" mnemonicParsing="false" text="Zurück"/>
-        <TextArea fx:id="instructionField" editable="false" layoutX="259.0" layoutY="171.0" prefHeight="185.0"
-                  prefWidth="362.0" wrapText="true"/>
+        <TextArea fx:id="instructionField" editable="false" layoutX="259.0" layoutY="171.0" prefHeight="185.0" prefWidth="362.0" wrapText="true"/>
+        <Label layoutX="263.0" layoutY="92.0" text="Zubereitungszeit: " fx:id="worktimeLabel"/>
+        <Label layoutX="263.0" layoutY="109.0" text="Kochzeit: " fx:id="cooktimeLabel"/>
+        <Label layoutX="263.0" layoutY="126.0" text="Portionen:" fx:id="portionLabel"/>
     </children>
 </AnchorPane>

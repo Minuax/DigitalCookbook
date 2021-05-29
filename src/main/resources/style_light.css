@@ -1,11 +1,11 @@
 /* Redefine base colors */
 .root {
-    -fx-base: rgb(50, 50, 50);
-    -fx-background: rgb(38, 38, 38);
+    -fx-base: rgb(255, 255, 255);
+    -fx-background: rgb(255, 255, 255);
 
     /* make controls (buttons, thumb, etc.) slightly lighter */
     /* text fields and table rows background */
-    -fx-control-inner-background: rgb(55, 55, 55);
+    -fx-control-inner-background: rgb(255, 255, 255);
     /* version of -fx-control-inner-background for alternative rows */
     -fx-control-inner-background-alt: derive(-fx-control-inner-background, 2.5%);
 
@@ -18,7 +18,7 @@
     -fx-accent: rgb(31, 94, 131);
 
     /* unfocused, selected elements */
-    -fx-selection-bar-non-focused: rgb(42, 42, 42);
+    -fx-selection-bar-non-focused: rgb(194, 194, 194);
 }
 
 .button {
@@ -46,15 +46,15 @@
 /* Fix scroll bar buttons arrows colors */
 .scroll-bar > .increment-button > .increment-arrow,
 .scroll-bar > .decrement-button > .decrement-arrow {
-    -fx-background-color: -fx-mark-highlight-color, rgb(42, 42, 42);
+    -fx-background-color: -fx-mark-highlight-color, rgb(194, 194, 194);
 }
 
 .scroll-bar > .increment-button:hover > .increment-arrow,
 .scroll-bar > .decrement-button:hover > .decrement-arrow {
-    -fx-background-color: -fx-mark-highlight-color, rgb(42, 42, 42);
+    -fx-background-color: -fx-mark-highlight-color, rgb(194, 194, 194);
 }
 
 .scroll-bar > .increment-button:pressed > .increment-arrow,
 .scroll-bar > .decrement-button:pressed > .decrement-arrow {
-    -fx-background-color: -fx-mark-highlight-color, rgb(42, 42, 42);
+    -fx-background-color: -fx-mark-highlight-color, rgb(194, 194, 194);
 }

@@ -19,18 +19,23 @@ public class RecipeFrameController implements Initializable {
 
     public Label titleLabel;
     public Label ingredientsLabel;
+    public Label worktimeLabel;
+    public Label cooktimeLabel;
+    public Label portionLabel;
 
     public TextArea descriptionField;
     public TextArea ingredientField;
     public TextArea instructionField;
 
     public Button backButton;
-    public Button addToShoppingcartButton;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         imageView.setImage(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeImage());
         titleLabel.setText(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeTitle());
+        worktimeLabel.setText("Arbeitszeit: " + DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeWorktime());
+        cooktimeLabel.setText("Kochzeit: " + DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeCooktime());
+        portionLabel.setText("Portionen: " + DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipePortions());
 
         descriptionField.setText(DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeDescription());
 
@@ -49,19 +54,5 @@ public class RecipeFrameController implements Initializable {
 
 
         backButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openMainMenu());
-        addToShoppingcartButton.setOnAction(new EventHandler<ActionEvent>() {
-            @Override
-            public void handle(ActionEvent event) {
-                for (Ingredient ingredient : DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().keySet()) {
-                    if (DigitalCookbook.instance.getShoppingListHandler().getShoppingList().containsKey(ingredient)) {
-                        double amount = DigitalCookbook.instance.getShoppingListHandler().getShoppingList().get(ingredient);
-                        DigitalCookbook.instance.getShoppingListHandler().getShoppingList().remove(ingredient);
-                        DigitalCookbook.instance.getShoppingListHandler().getShoppingList().put(ingredient, amount);
-                    } else {
-                        DigitalCookbook.instance.getShoppingListHandler().getShoppingList().put(ingredient, DigitalCookbook.instance.getFrameHandler().getCurrentRecipe().getRecipeIngredientHashmap().get(ingredient));
-                    }
-                }
-            }
-        });
     }
 }

@@ -20,8 +20,8 @@ public class MainFrameController implements Initializable {
     public ListView<Recipe> recipes;
     public TextField searchField;
     public ComboBox<RecipeType> mealSelection;
-    public Button shoppingListButton;
     public Button settingsButton;
+    public Button createRecipeButton;
 
     private ObservableList<Recipe> observableList;
 
@@ -77,7 +77,6 @@ public class MainFrameController implements Initializable {
                 DigitalCookbook.instance.getFrameHandler().openRecipeFrame(recipes.getSelectionModel().getSelectedItem());
         });
 
-        //Set the filter Predicate whenever the filter changes.
         searchField.setPromptText("Suchbegriff eingeben..");
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             ArrayList<Recipe> recipeArrayList = DigitalCookbook.instance.getRecipeHandler().getRecipesByType(mealSelection.getValue());
@@ -86,12 +85,11 @@ public class MainFrameController implements Initializable {
 
             observableList = FXCollections.observableArrayList(recipeArrayList);
 
-            //put the sorted list into the listview
             recipes.setItems(observableList);
             recipes.refresh();
         });
 
-        shoppingListButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openShoppingListFrame());
+        createRecipeButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openFrame("RecipeEditor"));
+        settingsButton.setOnAction(event -> DigitalCookbook.instance.getFrameHandler().openFrame("Settings"));
     }
-
 }

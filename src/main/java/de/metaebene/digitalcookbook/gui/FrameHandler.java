@@ -12,74 +12,27 @@ public class FrameHandler {
 
     private Recipe currentRecipe;
 
+    private boolean darkMode;
+
     public void openRecipeFrame(Recipe recipe) {
-        Parent p;
         this.currentRecipe = recipe;
 
-        try {
-            p = FXMLLoader.load(getClass().getResource("/Recipe.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openShoppingListFrame() {
-        Parent p;
-
-        try {
-            p = FXMLLoader.load(getClass().getResource("/ShoppingList.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openLoginFrame() {
-        try {
-            Parent p = FXMLLoader.load(getClass().getResource("/Login.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void openRegisterFrame() {
-        try {
-            Parent p = FXMLLoader.load(getClass().getResource("/Register.fxml"));
-            Scene scene = new Scene(p);
-
-            scene.getStylesheets().add("style.css");
-
-            DigitalCookbook.instance.getStage().setScene(scene);
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        openFrame("Recipe");
     }
 
     public void openMainMenu() {
+        this.currentRecipe = null;
+
+        openFrame("Main");
+    }
+
+    public void openFrame(String fileName) {
         Parent p;
         try {
-            p = FXMLLoader.load(getClass().getResource("/Main.fxml"));
+            p = FXMLLoader.load(getClass().getResource("/" + fileName + ".fxml"));
             Scene scene = new Scene(p);
 
-            scene.getStylesheets().add("style.css");
+            scene.getStylesheets().add(darkMode ? "style.css" : "style_light.css");
 
             this.currentRecipe = null;
 
@@ -89,6 +42,10 @@ public class FrameHandler {
             e.printStackTrace();
         }
     }
+
+    public boolean isDarkMode() { return darkMode; }
+
+    public void setDarkMode(boolean darkMode) { this.darkMode = darkMode; }
 
     public Recipe getCurrentRecipe() {
         return currentRecipe;
